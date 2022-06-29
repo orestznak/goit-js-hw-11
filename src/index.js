@@ -1,12 +1,15 @@
-import axios from "axios";
+// import axios from "axios";
 import Notiflix from "notiflix";
 import simpleLightbox from "simplelightbox";
+import { fetchImages } from "./fetchImages";
 
 const searchForm = document.querySelector('#search-form');
 const imgGallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
-const BASE_URL = 'https://pixabay.com/api/';
+// const BASE_URL = 'https://pixabay.com/api/';
+// const MY_KEY = '28335848-011b3dc949dd802b31558b1f8';
+
 
 
 
@@ -17,10 +20,24 @@ function searchImg(evt) {
 
     const imagesQuery = searchForm.elements.searchQuery.value;
 
-    console.log(imagesQuery);
+    fetchImages(imagesQuery)
+    console.log();
+
+    // ${BaseAudioContext}?key=${MY_KEY}&q=${imagesQuery}
 
 
-    //fetchImg()
+//     axios.get(`${BASE_URL}?key=${MY_KEY}&q=${imagesQuery}&image_type=photo`)
+//   .then(function (response) {
+//     // handle success
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+
+
+    //fetchImges()
 
 
 
