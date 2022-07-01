@@ -14,23 +14,24 @@ const loadMoreBtn = document.querySelector('.load-more');
 const imgApiService = new ImgApiService();
 
 searchForm.addEventListener('submit', searchImg);
-loadMoreBtn.addEventListener('click', onLoadMore);
+//loadMoreBtn.addEventListener('click', onLoadMore);
 
 function searchImg(evt) {
     evt.preventDefault();
 
     clearImgGallery();
-    const query = searchForm.elements.searchQuery.value.trim();
+    imgApiService.query = searchForm.elements.searchQuery.value.trim();
 
     imgApiService.resetPage();
-    imgApiService.fetchImages(query)
-          .then(data => appendImg(data))
+    
+    imgApiService.fetchImages()
+          .then(data => appendImg(data.hits))
           .catch(() => Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again'));
 };
 
 function onLoadMore(evt) {
   evt.preventDefault();
-  imgApiService.fetchImages(query);
+  imgApiService.fetchImages();
 }
 
 function appendImg (data) {
