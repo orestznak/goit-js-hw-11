@@ -12,7 +12,7 @@ export default class ImgApiService {
         const API_KEY = '28335848-011b3dc949dd802b31558b1f8';
 
         return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchQueryImg}&image_type=photo&orientation=horizontal
-        &safesearch=true&per_page=200&page=${this.page}`)
+        &safesearch=true&per_page=40&page=${this.page}`)
                 .then(res => {
                     this.incrementPage();
 
