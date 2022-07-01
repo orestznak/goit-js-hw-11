@@ -18,5 +18,4 @@ export function createGallery(data) {
         </div>
       </div> `
     ).join('');
-  
-  };
+}

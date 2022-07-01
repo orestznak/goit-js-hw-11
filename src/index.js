@@ -1,7 +1,7 @@
 
 import Notiflix from "notiflix";
 //import simpleLightbox from "simplelightbox";
-import { fetchImages } from "./js/fetchImages";
+//import { fetchImages } from "./js/fetchImages";
 import { createGallery } from "./js/createGallery";
 import ImgApiService from "./js/imgApiService";
 
@@ -34,7 +34,7 @@ function onLoadMore(evt) {
 }
 
 function appendImg (data) {
-  imgGallery.insertAdjacentHTML('beforeend',createGallery(data.hits));
+  imgGallery.insertAdjacentHTML('beforeend',createGallery(data));
 }
 
 function clearImgGallery() {
