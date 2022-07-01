@@ -5,11 +5,7 @@ export default class ImgApiService {
     constructor() {
         this.query = '';
         this.page = 1;
-
     }
-
-    // 
-    // 
 
     fetchImages() {
         const BASE_URL = 'https://pixabay.com/api/';
@@ -20,28 +16,20 @@ export default class ImgApiService {
                 .then(response => {
                     this.incrementPage();
 
-                    return response.data})
+                    return response.data;
+                })
                 
     }
-    
-        // .then(this.incrementPage())
-        // .catch();
-
     get query() {
         return this.query;
     }
-
     set query(newQuery) {
         this.query = newQuery;
     }
-
     resetPage() {
         this.page = 1;
     }
-
     incrementPage() {
         this.page +=1;
     }
-
-
 }
