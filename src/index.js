@@ -14,13 +14,14 @@ const loadMoreBtn = document.querySelector('.load-more');
 const imgApiService = new ImgApiService();
 
 searchForm.addEventListener('submit', searchImg);
-//loadMoreBtn.addEventListener('click', onLoadMore);
+loadMoreBtn.addEventListener('click', onLoadMore);
 
 function searchImg(evt) {
     evt.preventDefault();
 
     clearImgGallery();
-    imgApiService.query = searchForm.elements.searchQuery.value.trim();
+    imgApiService.query = evt.currentTarget.elements.searchQuery.value.trim();
+    // searchForm.elements.searchQuery.value.trim();
 
     imgApiService.resetPage();
     
@@ -31,7 +32,8 @@ function searchImg(evt) {
 
 function onLoadMore(evt) {
   evt.preventDefault();
-  imgApiService.fetchImages();
+  imgApiService.fetchImages()
+    .then(data => appendImg(data.hits));
 }
 
 function appendImg (data) {

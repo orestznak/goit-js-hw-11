@@ -1,7 +1,7 @@
 export function createGallery(data) {
     return data.map(image => 
-        `<div class="photo-card">
-        <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+        `<div class="gallery__photo-card">
+        <img class="photo-card__image" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
         <div class="info">
           <p class="info-item">
             <b>Likes: ${image.likes}</b>
