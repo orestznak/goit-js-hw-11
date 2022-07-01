@@ -12,23 +12,13 @@ export default class ImgApiService {
         const API_KEY = '28335848-011b3dc949dd802b31558b1f8';
 
         return axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchQueryImg}&image_type=photo&orientation=horizontal
-        &safesearch=true`)
+        &safesearch=true&per_page=40&page=${this.page}`)
                 .then(res => {
                     this.incrementPage();
 
                     return res.data;
                 });    
     }
-    //  fetchImage() {
-    //     return fetch(`${BASE_URL}?key=${API_KEY}&q=${this.searchQueryImg}&image_type=photo&orientation=horizontal&safesearch=true`)
-    //         .then (r => r.json)
-    //         .then(data => {
-    //             this.incrementPage();
-
-    //             return data.hits;
-    //         })
-    // }
-
     get query() {
         return this.searchQueryImg;
     }

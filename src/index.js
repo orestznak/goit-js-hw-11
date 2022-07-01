@@ -33,7 +33,8 @@ function searchImg(evt) {
 function onLoadMore(evt) {
   evt.preventDefault();
   imgApiService.fetchImages()
-    .then(data => appendImg(data.hits));
+    .then(appendImg(hits))
+    .catch(() => Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.'))
 }
 
 function appendImg (data) {
