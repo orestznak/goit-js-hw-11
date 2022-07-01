@@ -1,3 +1,5 @@
+import '../css/style.css'
+
 export default class LoadMoreBtn {
     constructor ({ selector, hidden = false}) {
         this.refs = this.getRefs(selector);

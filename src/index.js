@@ -2,24 +2,31 @@
 import './css/style.css'
 import Notiflix from "notiflix";
 //import simpleLightbox from "simplelightbox";
-//import { fetchImages } from "./js/fetchImages";
 import { createGallery } from "./js/createGallery";
 import ImgApiService from "./js/imgApiService";
+import LoadMoreBtn from './js/loadMoreBtn';
 
 
 
 const searchForm = document.querySelector('#search-form');
 const imgGallery = document.querySelector('.gallery');
-const loadMoreBtn = document.querySelector('.load-more');
-loadMoreBtn.setAttribute.disabled = true;
 
+
+const loadMoreBtn = new LoadMoreBtn({
+    selector: '.load-more',
+    hidden: true,
+});
 const imgApiService = new ImgApiService();
+let countImages = 0;
 
 searchForm.addEventListener('submit', searchImg);
-loadMoreBtn.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.btn.addEventListener('click', onLoadMore);
 
 function searchImg(evt) {
   evt.preventDefault();
+
+  loadMoreBtn.show();
+  loadMoreBtn.disabled();
 
   clearImgGallery();
   imgApiService.query = evt.currentTarget.elements.searchQuery.value.trim();
@@ -34,7 +41,8 @@ function searchImg(evt) {
           notiflixFailure();
         } else {
           appendImg(data.hits);
-        }
+        };
+        loadMoreBtn.enable();
       }
         )
       .catch(() => notiflixFailure())
@@ -43,11 +51,16 @@ function searchImg(evt) {
 function onLoadMore(evt) {
   evt.preventDefault();
 
+  loadMoreBtn.disabled();
   imgApiService.fetchImages()
       .then(data => {
         appendImg(data.hits);
-        if(true){
+        loadMoreBtn.enable();
+        
+        countImages += data.hits.length;
 
+        if(countImages === data.total){
+          return Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
         }
       })
 }
