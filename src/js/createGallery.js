@@ -1,3 +1,5 @@
+import '../css/style.css'
+
 export function createGallery(data) {
     return data.map(image => 
         `<div class="gallery__photo-card">
