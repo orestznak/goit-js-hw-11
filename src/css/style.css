@@ -47,7 +47,16 @@
     margin-right: auto;
     margin-bottom: 15px;
   }
+  .gallery__link {
+    display: block;
+    text-decoration: none;
+    height: 100%;
+  }
   
+  .gallery__link:hover {
+    cursor: zoom-in;
+  }
+
   .gallery__photo-card {
     position: relative;
     margin-bottom: 60px;
