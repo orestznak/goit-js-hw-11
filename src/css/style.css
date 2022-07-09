@@ -3,14 +3,16 @@
     --animation-duration: 250ms;
     --bg-color: rgb(48, 48, 230);
   }
-  .box-form{
+
+.box-form{
     display: block;
     background-color: rgb(48, 48, 230);
     width: 100%;
     margin-bottom: 10px;
 
   }
-  .search-form{
+
+ .search-form{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +31,7 @@
     color: rgb(255, 255, 255);
   }
 
-  .is-hidden {
+.is-hidden {
     display: none;
 }
 
