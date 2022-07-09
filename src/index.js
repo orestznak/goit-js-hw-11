@@ -75,19 +75,17 @@ function searchImg(evt) {
           loadMoreBtn.show();
           loadMoreBtn.disabled();
 
-
           appendImg(data.hits);
           new SimpleLightbox('.gallery a').refresh();
 
-          // const { height: cardHeight } = document
-          //   .querySelector('#search-form')
-          //   .firstElementChild.getBoundingClientRect();
+          const { height: cardHeight } = document
+            .querySelector('#search-form')
+            .firstElementChild.getBoundingClientRect();
 
-          // window.scrollBy({
-          //   top: cardHeight * 2,
-          //   behavior: "smooth",
-          // });
-
+          window.scrollBy({
+            top: cardHeight * 2,
+            behavior: "smooth",
+          });
 
           countImages = data.hits.length;
           
@@ -95,8 +93,7 @@ function searchImg(evt) {
           Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
           observer.observe(scrollGuard);
 
-        };
-        
+        };        
       }
         )
       .catch(() => notiflixFailure());
