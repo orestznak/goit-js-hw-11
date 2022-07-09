@@ -8,7 +8,7 @@ import "simplelightbox/dist/simple-lightbox.min.css"
 
 import { createGallery } from "./js/createGallery";
 import ImgApiService from "./js/imgApiService";
-import LoadMoreBtn from './js/loadMoreBtn';
+// import LoadMoreBtn from './js/loadMoreBtn';
 
 
 
@@ -17,19 +17,20 @@ const imgGallery = document.querySelector('.gallery');
 const scrollGuard = document.querySelector('.scroll-guard');
 
 
-const loadMoreBtn = new LoadMoreBtn({
-    selector: '.load-more',
-    hidden: true,
-});
+// const loadMoreBtn = new LoadMoreBtn({
+//     selector: '.load-more',
+//     hidden: true,
+// });
 
 const imgApiService = new ImgApiService();
 let countImages = 0;
 
 const scrollOptions = {
-  rootNargin: '50px',
+  root: imgGallery,
+  rootNargin: '0px',
   threshold: 1.0
 }
-const observer = new IntersectionObserver( entries => {
+const observer = new IntersectionObserver( (entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
       imgApiService.fetchImages()
@@ -51,15 +52,9 @@ const observer = new IntersectionObserver( entries => {
   })
 },scrollOptions);
 
-
-
-
 searchForm.addEventListener('submit', searchImg);
 // loadMoreBtn.refs.btn.addEventListener('click', onLoadMore);
 // imgGallery.addEventListener('click', showModal);
-
-observer.observe(scrollGuard);
-
 
 function searchImg(evt) {
   evt.preventDefault();
@@ -77,32 +72,39 @@ function searchImg(evt) {
           loadMoreBtn.hide();
 
         } else {
-          loadMoreBtn.show();
-          loadMoreBtn.disabled();
+          // loadMoreBtn.show();
+          // loadMoreBtn.disabled();
+
 
           appendImg(data.hits);
           new SimpleLightbox('.gallery a').refresh();
           //simpleLightbox =  , {captions: true, captionSelector: 'img', captionsData: 'alt', captionDelay: 250}
 
-          const { height: cardHeight } = document
-            .querySelector(".gallery")
-            .firstElementChild.getBoundingClientRect();
+          // const { height: cardHeight } = document
+          //   .querySelector('#search-form')
+          //   .firstElementChild.getBoundingClientRect();
 
-          window.scrollBy({
-            top: cardHeight * 2,
-            behavior: "smooth",
-          });
+          // window.scrollBy({
+          //   top: cardHeight * 2,
+          //   behavior: "smooth",
+          // });
+
 
           countImages = data.hits.length;
           
-          loadMoreBtn.enable();
+          // loadMoreBtn.enable();
           Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+          observer.observe(scrollGuard);
+
         };
         
       }
         )
-      .catch(() => notiflixFailure())
+      .catch(() => notiflixFailure());
+  
+  
 };
+
 
 // function onLoadMore(evt) {
 //   evt.preventDefault();
