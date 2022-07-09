@@ -79,14 +79,14 @@ function searchImg(evt) {
           appendImg(data.hits);
           new SimpleLightbox('.gallery a').refresh();
 
-          const { height: cardHeight } = document
-            .querySelector('#search-form')
-            .firstElementChild.getBoundingClientRect();
+          // const { height: cardHeight } = document
+          //   .querySelector('#search-form')
+          //   .firstElementChild.getBoundingClientRect();
 
-          window.scrollBy({
-            top: cardHeight * 2,
-            behavior: "smooth",
-          });
+          // window.scrollBy({
+          //   top: cardHeight * 2,
+          //   behavior: "smooth",
+          // });
 
 
           countImages = data.hits.length;
